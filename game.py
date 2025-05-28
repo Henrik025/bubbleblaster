@@ -1,15 +1,25 @@
-import pygame
-pygame.init()
+import pygame #pygame library
+from settings import Settings
 
-screen = pygame.display.set_mode([800, 500])
+def run_game():
+    pygame.init()
+    gm_settings = Settings()
 
-running = True
-while running:
-    
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    # drawing window
+    screen = pygame.display.set_mode([gm_settings.screen_width, gm_settings.screen_height])
+    pygame.display.set_caption(gm_settings.caption)
+
+
+    running = True
+    while running:
+        screen.fill(gm_settings.bg_color)
         
-    pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+        pygame.display.flip()
 
-pygame.quit()
+    pygame.quit()
+
+run_game()
